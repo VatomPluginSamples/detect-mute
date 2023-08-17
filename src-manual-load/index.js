@@ -1,8 +1,8 @@
-/***
+/***/
 module.exports = class DetectMutePlugin extends BasePlugin {
 
 
-/***/
+/***
 import { BasePlugin, BaseComponent } from 'vatom-spaces-plugins'
 
 
