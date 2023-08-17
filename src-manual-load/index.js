@@ -12,7 +12,7 @@ export default class DetectMutePlugin extends BasePlugin {
 
 	// Plugin info
 	static id = "detect-mute-plugin"
-	static name = "Detect Mute Plugin 005"
+	static name = "Detect Mute Plugin"
 	static description = "Description of the plugin goes here."
 	//
 	myStatusOnBtnToastID		= null;
@@ -34,7 +34,9 @@ export default class DetectMutePlugin extends BasePlugin {
 
 
 	async onBtnCheckStatus() {
-		const statusText = ( !! this.user.isMuted() ) ? 'User is muted' : 'User mic is on air';
+    //console.log('this.user.isMuted(): ', this.user.isMuted());
+		const isUserMuted = await this.user.isMuted();
+		const statusText = ( !! isUserMuted ) ? 'User is muted' : 'User mic is on air';
 		//
     this.myStatusOnBtnToastID = await this.menus.toast({
       text: statusText + '\t(per query)',
