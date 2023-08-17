@@ -12,7 +12,7 @@ export default class DetectMutePlugin extends BasePlugin {
 
 	// Plugin info
 	static id = "detect-mute-plugin"
-	static name = "Detect Mute Plugin"
+	static name = "Detect Mute Plugin 004"
 	static description = "Description of the plugin goes here."
 	//
 	myStatusOnBtnToastID		= null;
@@ -25,19 +25,36 @@ export default class DetectMutePlugin extends BasePlugin {
 			icon: this.paths.absolute('button-icon.png'),
 			text: 'Check Status',
 			action: () => this.onBtnCheckStatus()
-		})
+		});
+		// Hook
+		this.hooks.addHandler('core.user.audio.mute-change', data => {
+        console.log('mute state changed!', data.muted);
+        this.onHookStatusChange(data);
+    });
 	}
 
 
 	async onBtnCheckStatus() {
-		const statusText = `Status Message`;
+		const statusText = ( !! this.user.isMuted() ) ? 'User is muted' : 'User mic is on air';
 		//
     this.myStatusOnBtnToastID = await this.menus.toast({
-      text: statusText,
+      text: statusText + '\t(per query)',
       duration: 5000
     });
     //
     console.log(`myStatusOnBtnToastID: ${this.myStatusOnBtnToastID}.`);
+	}
+
+
+	async onHookStatusChange(data) {
+		const statusText = ( !! data.muted ) ? 'User is muted' : 'User mic is on air';
+		//
+    this.myStatusOnHookToastID = await this.menus.toast({
+      text: statusText + '\t(per hook)',
+      duration: 5000
+    });
+    //
+    console.log(`myStatusOnHookToastID: ${this.myStatusOnHookToastID}.`);
 	}
 
 
