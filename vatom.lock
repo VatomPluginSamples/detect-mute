@@ -1,0 +1,15 @@
+{
+  "id": "detect-mute",
+  "name": "Detect Mute",
+  "version": "0.0.1",
+  "beta": true,
+  "personalPlugin": true,
+  "description": "Detect Mute",
+  "longDescription": "Detect Mute",
+  "configuration": "TBD",
+  "category": "Communication",
+  "businessId": "3UewHF0ge9",
+  "price": 0,
+  "releaseNotes": "TBD",
+  "entrypoint": ""
+}
